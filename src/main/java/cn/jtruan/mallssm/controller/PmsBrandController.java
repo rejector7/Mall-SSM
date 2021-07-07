@@ -4,6 +4,9 @@ import cn.jtruan.mallssm.common.api.CommonPage;
 import cn.jtruan.mallssm.common.api.CommonResult;
 import cn.jtruan.mallssm.mbg.model.PmsBrand;
 import cn.jtruan.mallssm.service.PmsBrandService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@Api(tags = "PmsBrandController", description = "商品品牌管理")
 @Controller
 @RequestMapping("/brand")
 public class PmsBrandController{
@@ -21,6 +25,7 @@ public class PmsBrandController{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PmsBrand.class);
 
+    @ApiOperation("添加品牌")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult<PmsBrand> createBrand(@RequestBody PmsBrand pmsBrand){
@@ -37,6 +42,7 @@ public class PmsBrandController{
         return commonResult;
     }
 
+    @ApiOperation("删除指定id的品牌")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult deleteBrand(@PathVariable("id") Long id){
@@ -53,6 +59,7 @@ public class PmsBrandController{
         return commonResult;
     }
 
+    @ApiOperation("更新指定id的品牌")
     @RequestMapping(value = "update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult updateBrand(@PathVariable("id") Long id, @RequestBody PmsBrand pmsBrand){
@@ -68,6 +75,7 @@ public class PmsBrandController{
         return commonResult;
     }
 
+    @ApiOperation("获取所有的品牌列表")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<PmsBrand>> getBrandList(){
@@ -75,10 +83,11 @@ public class PmsBrandController{
     }
 
 
+    @ApiOperation("获取分页品牌列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                  @RequestParam(value = "pageSize",defaultValue = "3") Integer pageSize) {
+    public CommonResult listBrand(@RequestParam(value = "pageNum", defaultValue = "1") @ApiParam("页码") Integer pageNum,
+                                  @RequestParam(value = "pageSize",defaultValue = "3") @ApiParam("每页的数量") Integer pageSize) {
         List<PmsBrand> brandList = brandService.listBrand(pageNum, pageSize);
         return CommonResult.success(CommonPage.restPage(brandList));
     }
