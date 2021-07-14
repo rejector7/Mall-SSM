@@ -11,3 +11,23 @@
 * spring提供缓存，由多种机制，包括redis等，todo。
 
 * LOGGER： todo。
+
+
+**20210714**
+
+Security
+
+* SecurityConfig
+    * httpSecurity configure
+        * JWTFilter
+            * 继承OncePerRequestFilter接口
+            * 实现doFilterInternal方法
+            * 验证token
+            * 成功则设置用户权限
+        * ExceptionHandler
+    * auth configure
+        * 实现UserDetailsService接口的类
+        * 实现loadUserByUsername方法
+        * 返回实现了UserDetails接口的类的对象
+            * 其中包括用户名，密码，权限等。
+        * 这个对象会在http configure中使用
