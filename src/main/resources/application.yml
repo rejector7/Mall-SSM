@@ -25,6 +25,12 @@ spring:
         core-size: 30
         max-size: 100
         queue-capacity: 10
+  rabbitmq:
+    host: localhost # rabbitmq的连接地址
+    port: 5672 # rabbitmq的连接端口号
+    virtual-host: /mall # rabbitmq的虚拟host
+    username: mall # rabbitmq的用户名
+    password: mall # rabbitmq的密码
 
 
 mybatis:
@@ -46,3 +52,6 @@ jwt:
   secret: mySecret #JWT加解密使用的密钥
   expiration: 604800 #JWT的超期限时间(60*60*24)
   tokenHead: Bearer  #JWT负载中拿到开头
+
+
+
