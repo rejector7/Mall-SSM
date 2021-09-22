@@ -9,15 +9,14 @@ import org.springframework.stereotype.Component;
 @Component
 @Async
 public class ScheduleTaskMultiThread {
-    private static final Logger logger = LoggerFactory.getLogger(ScheduleTaskMultiThread.class);
-
-    @Scheduled(cron = "0/5 * * * * *")
-    public void scheduledTask01(){
-        logger.info("线程名称：{}", Thread.currentThread().getName());
-    }
-
-    @Scheduled(fixedRate = 5000)
-    public void scheduledTask02(){
-        logger.info("线程名称：{}", Thread.currentThread().getName());
-    }
+//    private static final Logger logger = LoggerFactory.getLogger(ScheduleTaskMultiThread.class);
+//    @Scheduled(cron = "0/5 * * * * *")
+//    public void scheduledTask01(){
+//        logger.info("线程名称：{}", Thread.currentThread().getName());
+//    }
+//
+//    @Scheduled(fixedRate = 5000)
+//    public void scheduledTask02(){
+//        logger.info("线程名称：{}", Thread.currentThread().getName());
+//    }
 }
